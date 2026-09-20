@@ -1,0 +1,83 @@
+{
+  "exemplars": [
+    {
+      "uid": "TR002",
+      "executive": "Mark Walker",
+      "company": "Direct Digital Holdings, Inc.",
+      "call_date": "2024-03-26",
+      "sentences": "\u2022  In addition, we launched our AI yield management tool, which allows us to achieve bid efficiency and revenue optimization and we continued the transition DDH shared services function for increased operational scale and support.\n\u2022  For our buy-side business, the introduction of AI and complex market dynamics will accelerate the market transition in digital media from traditional media.\n\u2022  Finally, AI tools will continue to proliferate through the value chain of allowing companies to leverage these tools and offer these capabilities across both of our business segments, increasing ROI and enhancing performance.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      }
+    },
+    {
+      "uid": "TR003",
+      "executive": "Daniel Durn",
+      "company": "Adobe Inc.",
+      "call_date": "2024-12-11",
+      "sentences": "\u2022  We are proud of the performance we have driven in FY '24, delivering record revenue, EPS and operating cash flows while aggressively investing in AI product innovation.\n\u2022  New AI releases, including Express, Acrobat AI Assistant, Firefly services, DX premium tiers and GenStudio for Performance Marketing have expanded the portfolio of products, driving proliferation and meaningful GenAI monetization.\n\u2022  Fourth quarter Document Cloud growth drivers included: strong growth across Reader and Acrobat on web and mobile and extensions such as Edge and Chrome; Acrobat subscription demand across all customer segments, routes to market and geographies; accelerated adoption and monetization of AI Assistant driven by product enhancements and delivery of French and German language support; and year-end seasonal strength in the enterprise.\n\u2022  We called out products like Express, AI Assistant, Firef\u2026",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      }
+    },
+    {
+      "uid": "TR001",
+      "executive": "Matevz Mazij",
+      "company": "Bragg Gaming Group Inc.",
+      "call_date": "2025-08-14",
+      "sentences": "\u2022  We don't just look at data, we decode it, leveraging information, advanced analytics and cutting-edge AI to supercharge player engagement, maximize revenue potential and build smarter, more efficient iGaming operations.\n\u2022  In short, we're building the future of user experience and our AI-first strategy is key to achieving this by embedding AI into our products and operations for unprecedented hyper-personalization, operational efficiency and maximize player lifetime value.\n\u2022  Our other transformational hire was Luka Pataky, our new EVP of AI and Innovation.\n\u2022  Luka comes with a strong pedigree in AI and technology with over a decade of experience at Sportradar, a company at the forefront of sports data and content.\n\u2022  Luka has been instrumental in revolutionizing sports content creation through AI, computer vision and deep learning, successfully bringing real-time data collection solu\u2026",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 2,
+        "governance": 0
+      }
+    },
+    {
+      "uid": "TR007",
+      "executive": "Christian Klein",
+      "company": "SAP SE",
+      "call_date": "2025-04-22",
+      "sentences": "\u2022  And finally, across our portfolio, embedded AI and Joule are boosting the productivity of a company to offset financial pressure.\n\u2022  We can't change external uncertainty, but we can help our customers like no other company to manage those challenges compliant with high agility and empowered by AI.\n\u2022  And again, about half of our cloud order entry were deals that included AI use cases.\n\u2022  As our customer wins indicate, auto companies rely on SAP's industry best practices, solutions and tools to transform their value chains by embracing the cloud and AI.\n\u2022  For all customers on their RISE journeys, we have been accelerating time to value while reducing the implementation costs of SAP projects with excellent AI tools such as Joule for Developers, Joule for Consultants and business transformation tools like Signavio, LeanIX and WalkMe.\n\u2022  It is also a pillar for high-performing end-to-end\u2026",
+      "scores": {
+        "conceptual": 1,
+        "critical": 1,
+        "applied": 2,
+        "governance": 1
+      }
+    },
+    {
+      "uid": "TR006",
+      "executive": "Matthew Cohen",
+      "company": "CyberArk Software Ltd.",
+      "call_date": "2025-02-13",
+      "sentences": "\u2022  And fourth, securing against AI and the securing of AI are soon to be among the biggest challenges we will all face.\n\u2022  AI makes attackers more efficient, more pervasive and ultimately more successful.\n\u2022  At the same time, AI is introducing brand-new identities in the form of the agentic workforce that will quickly outnumber humans and just like every other identity will need CyberArk to be secure.\n\u2022  Leveraging AI-driven role management, Zilla automates the processes of identity compliance and provisioning, making governance easy, intuitive and all-inclusive for the modern enterprise.\n\u2022  As a born in the cloud AI software and application development company, they understand the power of a unified platform to scale and innovate in a cloud-first world.\n\u2022  As I mentioned earlier, another topic customers are asking us about, as it relates to machine identities, is AI and in particular, a\u2026",
+      "scores": {
+        "conceptual": 2,
+        "critical": 2,
+        "applied": 1,
+        "governance": 1
+      }
+    },
+    {
+      "uid": "TR019",
+      "executive": "Megan Strachan",
+      "company": "Walker & Dunlop, Inc.",
+      "call_date": "2026-03-10",
+      "sentences": "\u2022  And I joined the firm via the acquisition of GeoPhy that was Europe's leading AI scale-up at the time back in 2022.\n\u2022  And long before generative AI became a top headline, I was building predictive machine learning solutions for commercial real estate.\n\u2022  It's very much both how we operate the business more effectively every single day, but it's also our quiet long-term strategic advantage, especially as AI raises the bar for insight, compliance and client experience.\n\u2022  This allows us to then layer AI on top of that and spot unusual anomalies or risks much earlier and much more easily.\n\u2022  And as we further layer AI into this experience, we're going to shift from not just effectively and efficiently responding to our borrowers' needs and asks, but actually proactively predicting those and anticipating them.\n\u2022  But to understand how that interface with our client might evolve in the fu\u2026",
+      "scores": {
+        "conceptual": 2,
+        "critical": 1,
+        "applied": 1,
+        "governance": 1
+      }
+    }
+  ],
+  "note": "Held out from few-shot eval by default. Stresses applied 1 vs 2 plus some critical/governance."
+}

@@ -1,0 +1,9 @@
+name: ai_literacy
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements.txt
+# After create: install torch matching node CUDA (see docs/hpc_setup.md).

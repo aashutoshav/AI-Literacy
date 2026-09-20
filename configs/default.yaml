@@ -1,0 +1,33 @@
+seed: 42
+
+paths:
+  data_csv: coding.csv
+  output_dir: outputs
+  preds_jsonl: outputs/preds.jsonl
+  preds_csv: outputs/preds.csv
+  # On ICE set HF_HOME or this path; on Mac leave null (no mkdir of cluster paths)
+  hf_cache: null
+
+model:
+  # Default for PACE ICE GPU jobs. Alternatives:
+  #   google/gemma-4-E4B-it   — lighter / less VRAM
+  #   google/gemma-4-31B-it   — needs more VRAM
+  #   google/gemma-4-26B-A4B-it — MoE; needs more VRAM
+  model_id: google/gemma-4-31B-it
+  dtype: auto
+  device_map: auto
+  max_new_tokens: 1024
+  temperature: 0.0
+  batch_size: 1
+
+score_dims:
+  - conceptual
+  - critical
+  - applied
+  - governance
+
+score_range: [0, 1, 2]
+
+inference:
+  limit: null  # null = all rows; CLI --limit overrides
+  dry_run: false

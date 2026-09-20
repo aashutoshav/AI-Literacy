@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.token
+*.key
+
+# Outputs & artifacts (keep folder via .gitkeep)
+outputs/*
+!outputs/.gitkeep
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+wandb/
+runs/
+lightning_logs/
+
+# Slurm logs (regenerated on cluster)
+slurm/*
+!slurm/.gitkeep
+*.out
+*.err
+
+# HF / caches
+.cache/
+hf_cache/
+**/huggingface/
+transformers_cache/
+
+# OS / IDE
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data joins (may contain sensitive labels)
+data/ceo_gender.csv

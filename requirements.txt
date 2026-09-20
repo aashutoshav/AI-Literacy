@@ -1,0 +1,19 @@
+# PyTorch: install separately to match the GPU node's CUDA.
+# HPC default suggestion (CUDA 12.x wheels):
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+# Or conda-forge after choosing the right cudatoolkit / module.
+
+# Gemma 4 (IT) needs Transformers 5.x (gemma4 model type ~>=5.5)
+transformers>=5.5.0
+accelerate>=1.2.0
+huggingface_hub>=0.26.0
+sentencepiece>=0.2.0
+protobuf>=4.25.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+scipy>=1.13.0
+numpy>=1.26.0
+tqdm>=4.66.0
+pyyaml>=6.0.2
+python-dotenv>=1.0.1
+pillow>=10.0.0
