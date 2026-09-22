@@ -1,0 +1,98 @@
+n_matched=79
+{
+  "dimensions": {
+    "conceptual": {
+      "n": 79,
+      "exact_match": 0.4430379746835443,
+      "adjacent_accuracy": 1.0,
+      "quadratic_weighted_kappa": 0.4720534629404618,
+      "confusion_matrix": [
+        [
+          13,
+          1,
+          0
+        ],
+        [
+          29,
+          14,
+          13
+        ],
+        [
+          0,
+          1,
+          8
+        ]
+      ]
+    },
+    "critical": {
+      "n": 79,
+      "exact_match": 0.7215189873417721,
+      "adjacent_accuracy": 0.9873417721518988,
+      "quadratic_weighted_kappa": 0.5536723163841808,
+      "confusion_matrix": [
+        [
+          49,
+          7,
+          0
+        ],
+        [
+          7,
+          7,
+          2
+        ],
+        [
+          1,
+          5,
+          1
+        ]
+      ]
+    },
+    "applied": {
+      "n": 79,
+      "exact_match": 0.45569620253164556,
+      "adjacent_accuracy": 1.0,
+      "quadratic_weighted_kappa": 0.48097784568372803,
+      "confusion_matrix": [
+        [
+          8,
+          2,
+          0
+        ],
+        [
+          1,
+          12,
+          39
+        ],
+        [
+          0,
+          1,
+          16
+        ]
+      ]
+    },
+    "governance": {
+      "n": 79,
+      "exact_match": 0.8734177215189873,
+      "adjacent_accuracy": 1.0,
+      "quadratic_weighted_kappa": 0.6906812842599843,
+      "confusion_matrix": [
+        [
+          62,
+          3,
+          0
+        ],
+        [
+          5,
+          6,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ]
+      ]
+    }
+  },
+  "joint_exact_match": 0.1518987341772152
+}

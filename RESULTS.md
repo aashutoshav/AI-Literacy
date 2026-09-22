@@ -115,15 +115,37 @@ Scaling to 31B zero-shot helps applied/joint vs 12B zero-shot, but **12B few-sho
 
 ---
 
-## Run 4 — 31B few-shot (6 exemplars) — still running / pending
+## Run 4 — Gemma 4 31B-IT few-shot ×6
 
 | Field | Value |
 |-------|-------|
-| **Status** | **In progress or not synced yet** (as of 2026-09-22 local pull) |
+| **Date** | 2026-09-22 (synced locally same day) |
 | **Model** | `google/gemma-4-31B-it` |
-| **Prompt** | Few-shot ×6 (same exemplars; held out of eval) |
-| **Tag expected** | `fewshot6_31b_n85` |
-| **Metrics** | _TBD — fill when `outputs/preds_fewshot6_31b_n85.*` lands_ |
+| **Prompt** | Few-shot ×6 (same exemplars as Run 2; held out of eval) |
+| **Data** | `n_matched=79` (85 − 6 held-out exemplars) |
+| **Cluster** | PACE ICE, `ice-gpu` / H200 |
+| **Outputs** | `outputs/preds_fewshot6_31b_n85.csv`, `outputs/preds_fewshot6_31b_n85.jsonl` |
+| **Metrics file** | `outputs/metrics/fewshot6_31b_n85.json` |
+
+### Agreement vs `coding.csv` (n=79)
+
+| Dimension | Exact | Adjacent | QWK |
+|-----------|------:|---------:|----:|
+| conceptual | 44.3% | 100% | 0.472 |
+| critical | 72.2% | 98.7% | 0.554 |
+| **applied** | **45.6%** | **100%** | **0.481** |
+| governance | 87.3% | 100% | 0.691 |
+| **joint (all 4)** | **15.2%** | — | — |
+
+### Confusion highlights
+- Applied gold=`1` → pred=`2` stays at **39** rows — same count as 12B few-shot (no further cut from scaling).
+- Applied edges Run 2 slightly (exact 45.6% vs 44.3%; QWK 0.481 vs 0.459).
+- Conceptual collapses further (63.3% → 44.3%): gold=`1` → pred=`0` in **29** cells.
+- Joint exact **falls** vs Run 2 (21.5% → 15.2%) because conceptual misses wipe out four-way matches.
+- Critical recovers vs 12B few-shot; governance is a bit below Run 2.
+
+### Takeaway
+31B + few-shot is **not a clear win** over 12B + few-shot. Applied gains are tiny; conceptual under-coding and lower joint exact erase the benefit.
 
 ---
 
@@ -132,12 +154,24 @@ Scaling to 31B zero-shot helps applied/joint vs 12B zero-shot, but **12B few-sho
 | Run | Model | Prompt | n | Exact conceptual | Exact critical | Exact applied | Exact governance | Joint exact | Applied QWK |
 |-----|-------|--------|--:|-----------------:|---------------:|--------------:|-----------------:|------------:|------------:|
 | 1 | 12B-it | zero-shot | 85 | 64.7% | 71.8% | 28.2% | 81.2% | 9.4% | 0.218 |
-| 2 | 12B-it | few-shot×6 | 79 | 63.3% | 69.6% | **44.3%** | **89.9%** | **21.5%** | **0.459** |
+| **2** | **12B-it** | **few-shot×6** | **79** | 63.3% | 69.6% | 44.3% | **89.9%** | **21.5%** | 0.459 |
 | 3 | 31B-it | zero-shot | 85 | 52.9% | **76.5%** | 40.0% | 85.9% | 18.8% | 0.354 |
-| 4 | 31B-it | few-shot×6 | — | | | | | | |
+| 4 | 31B-it | few-shot×6 | 79 | 44.3% | 72.2% | **45.6%** | 87.3% | 15.2% | **0.481** |
 
-### Headline so far
-1. **Best applied + joint so far:** Run 2 (12B few-shot).
-2. **Best critical exact:** Run 3 (31B zero-shot).
-3. **Persistent failure mode:** applied gold=`1` coded as `2`.
-4. Next: finish Run 4 (31B few-shot) — hypothesis is it combines size + boundary exemplars.
+---
+
+## Conclusion
+
+Across four prompted Gemma-4-IT coding runs on the same AI-literacy rubric:
+
+1. **Applied is the bottleneck.** Adjacent accuracy is near ceiling on every dimension, but applied exact stays in the mid-40s at best. The recurring error is gold=`1` coded as `2` (54 → 39 → 46 → 39 rows across Runs 1–4). Models treat many mid-strength “we use AI in X” mentions as full operational deployment.
+
+2. **Few-shot helps more than scale.** Moving from 12B zero-shot → 12B few-shot×6 roughly doubles applied QWK (0.22 → 0.46) and joint exact (9% → 22%). Moving 12B → 31B zero-shot helps applied less, and hurts conceptual exact.
+
+3. **Best overall package so far: Run 2 (12B few-shot).** It leads joint exact and governance, and nearly ties the best applied scores. Run 4 (31B few-shot) is only marginally better on applied and **worse** on joint/conceptual — so size + exemplars did not stack cleanly.
+
+4. **31B under-codes conceptual.** Both 31B runs push mid conceptual (`1`) toward `0`, which tanks joint exact even when other dims look fine.
+
+5. **Practical next steps (if continuing):** sharpen applied 1-vs-2 exemplars and rubric wording (not another size bump); optionally add conceptual mid-band exemplars for 31B; consider a second-pass critic only on applied; keep 12B few-shot as the default coder until something clearly beats Run 2 on joint + applied together.
+
+**Bottom line for the paper/project narrative:** prompted LLM coding can recover ordinal AI-literacy signal with high adjacent agreement, but **reliable applied mid-band coding needs better demonstration/rubric design more than a larger model.**
