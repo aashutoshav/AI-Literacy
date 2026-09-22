@@ -19,9 +19,15 @@ env/
 *.token
 *.key
 
-# Outputs & artifacts (keep folder via .gitkeep)
+# Outputs & artifacts (keep folder via .gitkeep; track pred/metrics CSVs)
 outputs/*
 !outputs/.gitkeep
+!outputs/preds*.csv
+!outputs/preds*.jsonl
+!outputs/_dry_*.csv
+!outputs/_dry_*.jsonl
+!outputs/metrics/
+!outputs/metrics/**
 *.pt
 *.bin
 *.safetensors
