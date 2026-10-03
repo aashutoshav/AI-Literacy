@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pick diverse few-shot exemplars from coding.csv for docs/prompts."""
+"""Pick diverse few-shot exemplars from data/coding.csv for docs/prompts."""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +15,7 @@ from src.schema import SCORE_DIMS, normalize_gold_frame, resolve_column, TEXT_CO
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv", type=Path, default=ROOT / "coding.csv")
+    ap.add_argument("--csv", type=Path, default=ROOT / "data" / "coding.csv")
     ap.add_argument("--n", type=int, default=6)
     args = ap.parse_args()
 

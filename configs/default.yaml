@@ -1,7 +1,7 @@
 seed: 42
 
 paths:
-  data_csv: coding.csv
+  data_csv: data/coding.csv
   output_dir: outputs
   preds_jsonl: outputs/preds.jsonl
   preds_csv: outputs/preds.csv

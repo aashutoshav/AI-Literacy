@@ -47,7 +47,7 @@ esac
 # MODE: zeroshot | fewshot
 MODE="${MODE:-zeroshot}"
 SHOTS="${SHOTS:-0}"
-LIMIT="${LIMIT:-85}"
+LIMIT="${LIMIT:-143}"
 EXEMPLARS="${EXEMPLARS:-configs/fewshot_exemplars.json}"
 
 case "$(echo "$MODE" | tr '[:upper:]' '[:lower:]')" in
@@ -76,10 +76,9 @@ echo "==> torch CUDA check"
 echo "Host=$(hostname)  PYTHON_EXEC=$PYTHON_EXEC  HF_HOME=$HF_HOME"
 echo "SIZE=$SIZE  MODEL_ID=$MODEL_ID  MODE=$MODE  SHOTS=$SHOTS  LIMIT=$LIMIT  TAG=$TAG"
 
-# Prefer coding.csv (cluster); fall back to coding.csv
-CSV="coding.csv"
-if [[ ! -f "$CSV" && -f coding.csv ]]; then CSV=coding.csv; fi
-if [[ ! -f "$CSV" ]]; then echo "ERROR: coding.csv not found" >&2; exit 1; fi
+# Round-2 gold. v1 lives in archived/coding_v1_n85.csv and is not used here.
+CSV="${CSV:-data/coding.csv}"
+if [[ ! -f "$CSV" ]]; then echo "ERROR: gold CSV not found: $CSV" >&2; exit 1; fi
 
 srun "$PYTHON_EXEC" -m src.infer_gemma \
   --config configs/default.yaml \

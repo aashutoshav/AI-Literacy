@@ -159,6 +159,23 @@ def _generate(bundle: dict, messages: list[dict[str, str]], max_new_tokens: int,
     return tokenizer.decode(new_tokens, skip_special_tokens=True)
 
 
+
+def _row_text(row, key: str) -> str:
+    """String cell, or empty if the column or value is missing. NaN-safe."""
+    if key not in row.index:
+        return ""
+    val = row[key]
+    try:
+        import pandas as pd
+        if pd.isna(val):
+            return ""
+    except (TypeError, ValueError):
+        if val is None:
+            return ""
+    s = str(val).strip()
+    return "" if s.lower() == "nan" else s
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Gemma 4 AI-literacy coding CLI")
     parser.add_argument("--config", type=Path, default=Path("configs/default.yaml"))
@@ -194,7 +211,7 @@ def main(argv: list[str] | None = None) -> int:
     _set_hf_cache(cache)
 
     seed = args.seed if args.seed is not None else int(cfg.get("seed", 42))
-    csv_path = args.csv or Path(paths.get("data_csv", "coding.csv"))
+    csv_path = args.csv or Path(paths.get("data_csv", "data/coding.csv"))
     limit = args.limit if args.limit is not None else inf_cfg.get("limit")
     dry_run = bool(args.dry_run or inf_cfg.get("dry_run", False))
     model_id = args.model_id or model_cfg.get("model_id", "google/gemma-4-12B-it")
@@ -259,14 +276,18 @@ def main(argv: list[str] | None = None) -> int:
     for _, row in df.iterrows():
         uid = str(row.get("uid", ""))
         sentences = str(row.get(text_col, "") or "")
+        executive = _row_text(row, "executive")
+        # call_title substitutes when company (and the other call metadata) are absent.
+        company = _row_text(row, "company") or _row_text(row, "call_title")
+        call_date = _row_text(row, "call_date")
         if dry_run or bundle is None:
             result = _mock_code_row(uid, sentences)
         else:
             messages = build_messages(
                 uid=uid,
-                executive=str(row.get("executive", "") or ""),
-                company=str(row.get("company", "") or ""),
-                call_date=str(row.get("call_date", "") or ""),
+                executive=executive,
+                company=company,
+                call_date=call_date,
                 sentences=sentences,
                 exemplars=exemplars or None,
             )

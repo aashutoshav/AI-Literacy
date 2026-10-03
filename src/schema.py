@@ -87,12 +87,12 @@ def coerce_result(obj: dict[str, Any], uid: str | None = None) -> dict[str, Any]
     return out
 
 
-# Human-labeled CSV uses "conceptual (0-2)" style headers.
+# Human-labeled CSV uses "conceptual (0-2)" style headers (round 2: data/coding.csv). _J is the spreadsheet suffix.
 GOLD_COL_ALIASES = {
-    "conceptual": ("conceptual", "conceptual (0-2)", "conceptual (0-2)"),
-    "critical": ("critical", "critical (0-2)", "critical (0-2)"),
-    "applied": ("applied", "applied (0-2)", "applied (0-2)"),
-    "governance": ("governance", "governance (0-2)", "governance (0-2)"),
+    "conceptual": ("conceptual", "conceptual (0-2)", "conceptual (0-2)_J"),
+    "critical": ("critical", "critical (0-2)", "critical (0-2)_J"),
+    "applied": ("applied", "applied (0-2)", "applied (0-2)_J"),
+    "governance": ("governance", "governance (0-2)", "governance (0-2)_J"),
 }
 TEXT_COL_CANDIDATES = ("AI-related sentences", "AI-related sentences", "text", "sentences")
 

@@ -1,4 +1,4 @@
-"""Compare model predictions to human gold labels in coding.csv."""
+"""Compare model predictions to human gold labels in data/coding.csv."""
 
 from __future__ import annotations
 
@@ -39,9 +39,9 @@ def _load_preds(path: Path) -> pd.DataFrame:
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description="Validate AI-literacy preds vs gold coding.csv")
+    p = argparse.ArgumentParser(description="Validate AI-literacy preds vs gold data/coding.csv")
     p.add_argument("--preds", type=Path, required=True, help="preds CSV or JSONL")
-    p.add_argument("--gold", type=Path, default=Path("coding.csv"))
+    p.add_argument("--gold", type=Path, default=Path("data/coding.csv"))
     p.add_argument("--uid-col", default="uid")
     args = p.parse_args(argv)
 
