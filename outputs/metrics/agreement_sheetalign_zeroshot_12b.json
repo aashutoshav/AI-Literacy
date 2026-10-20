@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.5260832208174788,
+      "quadratic_kappa": 0.5446396980776035,
+      "kripp_alpha_ordinal": 0.5599440324121518,
+      "exact_k": 116,
+      "exact_n": 143,
+      "exact_pct": 81.11888111888112
+    },
+    "critical": {
+      "linear_kappa": 0.488293630508128,
+      "quadratic_kappa": 0.5091101135463427,
+      "kripp_alpha_ordinal": 0.5256048125926136,
+      "exact_k": 110,
+      "exact_n": 143,
+      "exact_pct": 76.92307692307692
+    },
+    "applied": {
+      "linear_kappa": 0.49243414907528493,
+      "quadratic_kappa": 0.5526099127284703,
+      "kripp_alpha_ordinal": 0.5236618058777833,
+      "exact_k": 105,
+      "exact_n": 143,
+      "exact_pct": 73.42657342657343
+    },
+    "governance": {
+      "linear_kappa": 0.37920919863897684,
+      "quadratic_kappa": 0.46245783132530116,
+      "kripp_alpha_ordinal": 0.4082444876095478,
+      "exact_k": 107,
+      "exact_n": 143,
+      "exact_pct": 74.82517482517483
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.5135599038791624,
+    "quadratic_kappa": 0.6991162855940525,
+    "kripp_alpha_ordinal": 0.6657227067235634,
+    "kripp_alpha_interval": 0.6959010248805766,
+    "exact_k": 61,
+    "exact_n": 143,
+    "exact_pct": 42.65734265734266,
+    "icc_a1": 0.70059038515603,
+    "icc_a1_pingouin_icc2": 0.7005903851560299,
+    "icc_a1_ci95_bootstrap": [
+      0.5935865795487978,
+      0.7834344235887631
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.19055944055944055,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.7045454545454546
+  },
+  "inputs": {
+    "preds": "outputs/preds_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}

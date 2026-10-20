@@ -11,7 +11,7 @@ from typing import Any
 
 import yaml
 
-from .prompts import build_messages
+from .prompts import build_messages, build_perdim_messages
 from .schema import (
     SCORE_DIMS,
     blank_result,
@@ -129,7 +129,20 @@ def _load_model(model_id: str, device_map: str = "auto", dtype: str = "auto"):
     return {"kind": "causal", "model": model, "tokenizer": tokenizer}
 
 
-def _generate(bundle: dict, messages: list[dict[str, str]], max_new_tokens: int, temperature: float) -> str:
+def _generate(
+    bundle: dict,
+    messages: list[dict[str, str]],
+    max_new_tokens: int,
+    temperature: float,
+    *,
+    num_samples: int = 1,
+    top_p: float | None = None,
+) -> list[str]:
+    """Return a list of decoded completions (length num_samples).
+
+    temperature <= 0 -> greedy (one completion, as in the original zero/few-shot runs).
+    temperature > 0  -> sampling; num_samples completions drawn in one batched generate call.
+    """
     model = bundle["model"]
     tokenizer = bundle["tokenizer"]
 
@@ -147,17 +160,142 @@ def _generate(bundle: dict, messages: list[dict[str, str]], max_new_tokens: int,
         except StopIteration:
             pass
 
+    do_sample = temperature is not None and temperature > 0
     gen_kwargs = {
         "max_new_tokens": max_new_tokens,
-        "do_sample": temperature is not None and temperature > 0,
+        "do_sample": do_sample,
     }
-    if gen_kwargs["do_sample"]:
+    if do_sample:
         gen_kwargs["temperature"] = temperature
+        if top_p is not None:
+            gen_kwargs["top_p"] = top_p
+        gen_kwargs["num_return_sequences"] = max(1, int(num_samples))
 
     output_ids = model.generate(**inputs, **gen_kwargs)
-    new_tokens = output_ids[0][inputs["input_ids"].shape[-1] :]
-    return tokenizer.decode(new_tokens, skip_special_tokens=True)
+    prompt_len = inputs["input_ids"].shape[-1]
+    return [tokenizer.decode(seq[prompt_len:], skip_special_tokens=True) for seq in output_ids]
 
+
+def _vote(scores: list[int]) -> tuple[int, dict[int, int]]:
+    """Majority vote over 0/1/2; ties go to the LOWER score ("between 1 and 2, assign 1")."""
+    counts = {k: 0 for k in (0, 1, 2)}
+    for v in scores:
+        if v in counts:
+            counts[v] += 1
+    if not scores:
+        return 0, counts
+    best = max(counts.values())
+    winner = min(k for k, c in counts.items() if c == best)
+    return winner, counts
+
+
+def _parse_full(raw: str, uid: str) -> tuple[dict[str, Any] | None, str]:
+    try:
+        return coerce_result(_extract_json(raw), uid=uid), ""
+    except Exception as exc:  # noqa: BLE001
+        return None, f"parse_error: {exc}; raw={raw[:300]}"
+
+
+def _parse_perdim(raw: str, dim: str) -> tuple[tuple[int, list[str], str] | None, str]:
+    """Parse {"score": k, "evidence": [...]} (also accepts {"scores": {dim: k}} shapes)."""
+    try:
+        obj = _extract_json(raw)
+    except Exception as exc:  # noqa: BLE001
+        return None, f"parse_error: {exc}; raw={raw[:300]}"
+    val = obj.get("score")
+    if val is None and isinstance(obj.get("scores"), dict):
+        val = obj["scores"].get(dim)
+    try:
+        val = int(val)
+    except (TypeError, ValueError):
+        return None, f"parse_error: no integer score; raw={raw[:300]}"
+    val = max(0, min(2, val))
+    ev = obj.get("evidence", [])
+    if isinstance(ev, dict):
+        ev = ev.get(dim, [])
+    if isinstance(ev, str):
+        ev = [ev] if ev.strip() else []
+    ev = [str(e) for e in (ev or []) if str(e).strip()]
+    return (val, ev, str(obj.get("notes", "") or "")), ""
+
+
+def _code_row(
+    bundle: dict,
+    *,
+    uid: str,
+    meta: dict[str, str],
+    sentences: str,
+    exemplars: list[dict[str, Any]] | None,
+    perdim: bool,
+    num_samples: int,
+    temperature: float,
+    top_p: float | None,
+    max_new: int,
+    sample_log: list[dict[str, Any]],
+    prompt_version: str = "sheet",
+) -> dict[str, Any]:
+    """Code one row. Handles single-prompt or per-dimension prompts, greedy or voted."""
+    voting = num_samples > 1
+    result = blank_result(uid)
+    notes: list[str] = []
+    vote_counts: dict[str, dict[int, int]] = {}
+
+    if not perdim:
+        msgs = build_messages(uid=uid, sentences=sentences, exemplars=exemplars or None, prompt_version=prompt_version, **meta)
+        raws = _generate(bundle, msgs, max_new, temperature, num_samples=num_samples, top_p=top_p)
+        parsed: list[dict[str, Any]] = []
+        for i, raw in enumerate(raws):
+            res, err = _parse_full(raw, uid)
+            sample_log.append({"uid": uid, "dimension": "all", "sample": i, "ok": res is not None,
+                               "scores": res["scores"] if res else None,
+                               "evidence": res["evidence"] if res else None,
+                               "error": err or None, "raw": raw if res is None else None})
+            if res is not None:
+                parsed.append(res)
+        if not parsed:
+            last_err = sample_log[-1].get("error") if sample_log else ""
+            result["notes"] = last_err if len(raws) == 1 else f"parse_error: all {len(raws)} samples failed; last: {last_err}"
+            return result
+        if not voting:
+            return parsed[0]
+        for d in SCORE_DIMS:
+            win, counts = _vote([p["scores"][d] for p in parsed])
+            vote_counts[d] = counts
+            result["scores"][d] = win
+            src = next((p for p in parsed if p["scores"][d] == win), None)
+            result["evidence"][d] = list(src["evidence"].get(d) or []) if (src and win > 0) else []
+        notes.append(f"vote over {len(parsed)}/{len(raws)} parsed samples")
+        first = next((p for p in parsed if p.get("notes")), None)
+        if first:
+            notes.append(str(first["notes"]))
+    else:
+        for d in SCORE_DIMS:
+            msgs = build_perdim_messages(dim=d, uid=uid, sentences=sentences, prompt_version=prompt_version, **meta)
+            raws = _generate(bundle, msgs, max_new, temperature, num_samples=num_samples, top_p=top_p)
+            parsed_d: list[tuple[int, list[str], str]] = []
+            for i, raw in enumerate(raws):
+                res, err = _parse_perdim(raw, d)
+                sample_log.append({"uid": uid, "dimension": d, "sample": i, "ok": res is not None,
+                                   "score": res[0] if res else None,
+                                   "evidence": res[1] if res else None,
+                                   "error": err or None, "raw": raw if res is None else None})
+                if res is not None:
+                    parsed_d.append(res)
+            if not parsed_d:
+                notes.append(f"{d}: parse_error on all {len(raws)} samples")
+                continue
+            win, counts = _vote([p[0] for p in parsed_d])
+            if voting:
+                vote_counts[d] = counts
+            result["scores"][d] = win
+            src = next((p for p in parsed_d if p[0] == win), None)
+            result["evidence"][d] = list(src[1]) if (src and win > 0) else []
+            if src and src[2]:
+                notes.append(f"{d}: {src[2]}")
+    result["notes"] = " || ".join(n for n in notes if n)
+    if vote_counts:
+        result["vote_counts"] = {d: {str(k): v for k, v in c.items()} for d, c in vote_counts.items()}
+    return result
 
 
 def _row_text(row, key: str) -> str:
@@ -200,6 +338,18 @@ def main(argv: list[str] | None = None) -> int:
         default=True,
         help="When shots>0, skip exemplar uids in the eval set (default: true)",
     )
+    parser.add_argument(
+        "--prompt-mode",
+        choices=["single", "perdim"],
+        default="single",
+        help="single = one prompt scores all four dimensions (original); perdim = one prompt per dimension",
+    )
+    parser.add_argument("--prompt-version", choices=["sheet", "v3", "v4"], default="sheet", help="sheet = sheet-aligned prompt (baseline); v3 = fix3 rubric; v4 = v3 with the sheet-aligned applied rule")
+    parser.add_argument("--num-samples", type=int, default=1, help="Samples per prompt; >1 enables majority vote")
+    parser.add_argument("--sample-temperature", type=float, default=0.7, help="Temperature used when --num-samples > 1")
+    parser.add_argument("--top-p", type=float, default=0.95, help="top_p used when --num-samples > 1")
+    parser.add_argument("--max-new-tokens", type=int, default=None, help="Override model.max_new_tokens from config")
+    parser.add_argument("--output-samples-jsonl", type=Path, default=None, help="Write every sample (for vote inspection)")
     args = parser.parse_args(argv)
 
     cfg = _load_config(args.config)
@@ -270,10 +420,34 @@ def main(argv: list[str] | None = None) -> int:
             dry_run = True
 
     results: list[dict[str, Any]] = []
-    max_new = int(model_cfg.get("max_new_tokens", 1024))
-    temperature = float(model_cfg.get("temperature", 0.0))
+    max_new = int(args.max_new_tokens or model_cfg.get("max_new_tokens", 1024))
+    num_samples = max(1, int(args.num_samples or 1))
+    perdim = args.prompt_mode == "perdim"
+    if perdim and exemplars:
+        print("ERROR: --prompt-mode perdim does not support few-shot exemplars", file=sys.stderr)
+        return 1
+    if num_samples > 1:
+        temperature = float(args.sample_temperature)
+        top_p: float | None = float(args.top_p)
+        if temperature <= 0:
+            print("ERROR: --num-samples > 1 needs --sample-temperature > 0", file=sys.stderr)
+            return 1
+    else:
+        temperature = float(model_cfg.get("temperature", 0.0))
+        top_p = None
+    print(f"[info] prompt_version={args.prompt_version} prompt_mode={args.prompt_mode} num_samples={num_samples} temperature={temperature} top_p={top_p} max_new_tokens={max_new} n_rows={len(df)}", flush=True)
+    try:
+        import torch
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
+    except ImportError:
+        pass
 
-    for _, row in df.iterrows():
+    sample_log: list[dict[str, Any]] = []
+    import time
+    t0 = time.time()
+    for i_row, (_, row) in enumerate(df.iterrows()):
         uid = str(row.get("uid", ""))
         sentences = str(row.get(text_col, "") or "")
         executive = _row_text(row, "executive")
@@ -283,26 +457,33 @@ def main(argv: list[str] | None = None) -> int:
         if dry_run or bundle is None:
             result = _mock_code_row(uid, sentences)
         else:
-            messages = build_messages(
+            result = _code_row(
+                bundle,
                 uid=uid,
-                executive=executive,
-                company=company,
-                call_date=call_date,
+                meta={"executive": executive, "company": company, "call_date": call_date},
                 sentences=sentences,
                 exemplars=exemplars or None,
+                perdim=perdim,
+                num_samples=num_samples,
+                temperature=temperature,
+                top_p=top_p,
+                max_new=max_new,
+                sample_log=sample_log,
+                prompt_version=args.prompt_version,
             )
-            raw = _generate(bundle, messages, max_new_tokens=max_new, temperature=temperature)
-            try:
-                parsed = _extract_json(raw)
-                result = coerce_result(parsed, uid=uid)
-            except Exception as exc:  # noqa: BLE001
-                result = blank_result(uid)
-                result["notes"] = f"parse_error: {exc}; raw={raw[:500]}"
 
         errs = validate_result(result, require_evidence_for_nonzero=False)
         result["validation_warnings"] = errs
         results.append(result)
-        print(f"coded uid={uid} scores={result['scores']}")
+        el = time.time() - t0
+        print(f"coded uid={uid} scores={result['scores']} votes={result.get('vote_counts', '')} [{i_row + 1}/{len(df)} {el / 60:.1f} min]", flush=True)
+
+    if args.output_samples_jsonl is not None:
+        args.output_samples_jsonl.parent.mkdir(parents=True, exist_ok=True)
+        with args.output_samples_jsonl.open("w") as f:
+            for rec in sample_log:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        print(f"wrote {args.output_samples_jsonl} ({len(sample_log)} samples)")
 
     out_jsonl.parent.mkdir(parents=True, exist_ok=True)
     out_csv.parent.mkdir(parents=True, exist_ok=True)

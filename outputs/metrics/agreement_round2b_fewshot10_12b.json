@@ -1,0 +1,69 @@
+{
+  "n": 133,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.2599264359143638,
+      "quadratic_kappa": 0.3789328638138254,
+      "kripp_alpha_ordinal": 0.33956610418507505,
+      "exact_k": 75,
+      "exact_n": 133,
+      "exact_pct": 56.390977443609025
+    },
+    "critical": {
+      "linear_kappa": 0.4265868263473055,
+      "quadratic_kappa": 0.46405090137857896,
+      "kripp_alpha_ordinal": 0.45088815650264213,
+      "exact_k": 98,
+      "exact_n": 133,
+      "exact_pct": 73.6842105263158
+    },
+    "applied": {
+      "linear_kappa": 0.38990825688073394,
+      "quadratic_kappa": 0.49422535211267615,
+      "kripp_alpha_ordinal": 0.413283101470298,
+      "exact_k": 79,
+      "exact_n": 133,
+      "exact_pct": 59.3984962406015
+    },
+    "governance": {
+      "linear_kappa": 0.4119922630560928,
+      "quadratic_kappa": 0.5136000000000001,
+      "kripp_alpha_ordinal": 0.48167390404378396,
+      "exact_k": 101,
+      "exact_n": 133,
+      "exact_pct": 75.93984962406014
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.4602949424301409,
+    "quadratic_kappa": 0.719406012145513,
+    "kripp_alpha_ordinal": 0.6980673524557182,
+    "kripp_alpha_interval": 0.7186754019132302,
+    "exact_k": 20,
+    "exact_n": 133,
+    "exact_pct": 15.037593984962406,
+    "icc_a1": 0.7209269728542728,
+    "icc_a1_pingouin_icc2": 0.7209269728542731,
+    "icc_a1_ci95_bootstrap": [
+      0.6379468519388808,
+      0.7833497317443526
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.231203007518797,
+    "human_composite_mean": 0.7838345864661654,
+    "model_composite_mean": 0.7218045112781954
+  },
+  "inputs": {
+    "preds": "outputs/round2b_loosened/preds_fewshot10_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 133,
+    "n_matched_uid": 133,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 10
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.5279489436619718,
+      "quadratic_kappa": 0.5516304347826086,
+      "kripp_alpha_ordinal": 0.5708587247027076,
+      "exact_k": 113,
+      "exact_n": 143,
+      "exact_pct": 79.02097902097903
+    },
+    "critical": {
+      "linear_kappa": 0.43200302629090226,
+      "quadratic_kappa": 0.4716465863453816,
+      "kripp_alpha_ordinal": 0.4539810732745515,
+      "exact_k": 103,
+      "exact_n": 143,
+      "exact_pct": 72.02797202797203
+    },
+    "applied": {
+      "linear_kappa": 0.3721888719648776,
+      "quadratic_kappa": 0.44255904609034624,
+      "kripp_alpha_ordinal": 0.4061236773846745,
+      "exact_k": 95,
+      "exact_n": 143,
+      "exact_pct": 66.43356643356644
+    },
+    "governance": {
+      "linear_kappa": 0.3611568304726075,
+      "quadratic_kappa": 0.40734162226169335,
+      "kripp_alpha_ordinal": 0.37115061608566113,
+      "exact_k": 107,
+      "exact_n": 143,
+      "exact_pct": 74.82517482517483
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.48256149846443874,
+    "quadratic_kappa": 0.6698877972835131,
+    "kripp_alpha_ordinal": 0.6438859815615451,
+    "kripp_alpha_interval": 0.6677439120273722,
+    "exact_k": 49,
+    "exact_n": 143,
+    "exact_pct": 34.26573426573427,
+    "icc_a1": 0.6714377959535082,
+    "icc_a1_pingouin_icc2": 0.6714377959535082,
+    "icc_a1_ci95_bootstrap": [
+      0.5644063857608599,
+      0.7559733392992005
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.20804195804195805,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.7185314685314685
+  },
+  "inputs": {
+    "preds": "outputs/preds_perdim_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}

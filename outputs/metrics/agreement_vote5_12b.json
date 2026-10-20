@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.4953145917001339,
+      "quadratic_kappa": 0.5188536953242835,
+      "kripp_alpha_ordinal": 0.5345202508131763,
+      "exact_k": 114,
+      "exact_n": 143,
+      "exact_pct": 79.72027972027972
+    },
+    "critical": {
+      "linear_kappa": 0.488293630508128,
+      "quadratic_kappa": 0.5091101135463427,
+      "kripp_alpha_ordinal": 0.5256048125926136,
+      "exact_k": 110,
+      "exact_n": 143,
+      "exact_pct": 76.92307692307692
+    },
+    "applied": {
+      "linear_kappa": 0.5035188139251197,
+      "quadratic_kappa": 0.5618219461697722,
+      "kripp_alpha_ordinal": 0.5336993008505957,
+      "exact_k": 106,
+      "exact_n": 143,
+      "exact_pct": 74.12587412587412
+    },
+    "governance": {
+      "linear_kappa": 0.3919206236711552,
+      "quadratic_kappa": 0.4739593417231365,
+      "kripp_alpha_ordinal": 0.42075506894575554,
+      "exact_k": 108,
+      "exact_n": 143,
+      "exact_pct": 75.52447552447552
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.5131344682180229,
+    "quadratic_kappa": 0.7102973836736906,
+    "kripp_alpha_ordinal": 0.6623268299495242,
+    "kripp_alpha_interval": 0.7065010876449046,
+    "exact_k": 60,
+    "exact_n": 143,
+    "exact_pct": 41.95804195804196,
+    "icc_a1": 0.7117392909094857,
+    "icc_a1_pingouin_icc2": 0.7117392909094857,
+    "icc_a1_ci95_bootstrap": [
+      0.6103180676151208,
+      0.7906698850336286
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.19055944055944055,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.6975524475524476
+  },
+  "inputs": {
+    "preds": "outputs/preds_vote5_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}

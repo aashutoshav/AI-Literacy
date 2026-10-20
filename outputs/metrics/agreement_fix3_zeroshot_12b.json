@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.5473581689797906,
+      "quadratic_kappa": 0.5652478952291862,
+      "kripp_alpha_ordinal": 0.5818084421574261,
+      "exact_k": 117,
+      "exact_n": 143,
+      "exact_pct": 81.81818181818181
+    },
+    "critical": {
+      "linear_kappa": 0.4913161749319942,
+      "quadratic_kappa": 0.49877322117069756,
+      "kripp_alpha_ordinal": 0.5325734355391226,
+      "exact_k": 112,
+      "exact_n": 143,
+      "exact_pct": 78.32167832167832
+    },
+    "applied": {
+      "linear_kappa": 0.3646237393328161,
+      "quadratic_kappa": 0.4803599238622599,
+      "kripp_alpha_ordinal": 0.37301033731952293,
+      "exact_k": 80,
+      "exact_n": 143,
+      "exact_pct": 55.94405594405595
+    },
+    "governance": {
+      "linear_kappa": 0.6326174082828075,
+      "quadratic_kappa": 0.7079009723016586,
+      "kripp_alpha_ordinal": 0.6579812408509259,
+      "exact_k": 118,
+      "exact_n": 143,
+      "exact_pct": 82.51748251748252
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.5047904882835045,
+    "quadratic_kappa": 0.7300298410507298,
+    "kripp_alpha_ordinal": 0.6746212690316976,
+    "kripp_alpha_interval": 0.7305307035380236,
+    "exact_k": 42,
+    "exact_n": 143,
+    "exact_pct": 29.37062937062937,
+    "icc_a1": 0.7314106736088513,
+    "icc_a1_pingouin_icc2": 0.7314106736088515,
+    "icc_a1_ci95_bootstrap": [
+      0.6297952748880707,
+      0.8033278541546091
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.2097902097902098,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.8251748251748252
+  },
+  "inputs": {
+    "preds": "outputs/preds_fix3_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}

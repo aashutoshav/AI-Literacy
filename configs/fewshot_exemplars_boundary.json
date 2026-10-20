@@ -1,0 +1,254 @@
+{
+  "note": "Boundary few-shot set (fewshot_boundary). Chosen mainly from governance and critical boundary cases in data/coding.csv, covering both sides of 0/1 and 1/2 on those two dimensions, plus conceptual 1 and applied 1 vs 2. Scores are copied exactly from data/coding.csv. Evidence quotes are verbatim sentences from each call. No exemplar is conceptual 0. These uids are held out from evaluation.",
+  "exemplars": [
+    {
+      "uid": "TR170",
+      "call_title": "Credit Corp Group Limited - Shareholder/Analyst Call",
+      "sentences": "•  So what AI really delivers is it gives us greater insight into what's happening in those conversations.\n•  So the large language models are much better at transcribing and monitoring sentiment on these customer interactions.\n•  We have a dedicated AI implementation team that is focused on it alongside our operational teams.\n•  It all sort of seems very easy when you get on to AI and you ask a question, and it delivers an immediate answer.\n•  What I can say is AI is a somewhat...\n•  Prior to the deployment of large language models, we were using a previous generation of technology to transcribe our conversations, not as good as we can achieve today.\n•  In terms of AI to date, investments, expenditures on large language models and the team involved, it's probably running at about $1.5 million per annum.\n•  Look, in some ways, AI is something you can't ignore because your competitors will do it, and someone will find a way to make it work.\n•  So look, at the moment, all of our AI initiatives, a particular sort of governance overlay that is being put in place is that they all involve what's called human in the loop.\n•  So it may be that if somebody is having a dialogue, a digital interaction, it may be that the automated agent, the AI might draft the communication, but it will always be reviewed and potentially adjusted by a human before it's deployed.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 1
+      },
+      "evidence": {
+        "conceptual": [
+          "So the large language models are much better at transcribing and monitoring sentiment on these customer interactions."
+        ],
+        "critical": [],
+        "applied": [
+          "We have a dedicated AI implementation team that is focused on it alongside our operational teams."
+        ],
+        "governance": [
+          "So look, at the moment, all of our AI initiatives, a particular sort of governance overlay that is being put in place is that they all involve what's called human in the loop."
+        ]
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 1, governance 1. Governance 1 boundary (one safeguard). A single human-in-the-loop review rule on AI drafts is a brief safeguard, so governance is 1, not 2. Critical is 0: 'AI is something you can't ignore' is not an evaluation of the AI system. Conceptual 1 and applied 1: a model capability and a stated use, with no measured outcome.",
+      "selection_reason": "governance 0/1 and 1/2 boundary: single human-in-the-loop safeguard"
+    },
+    {
+      "uid": "TR034",
+      "call_title": "Okta, Inc. Presents at Okta Oktane 2023, Oct-03-2023 through Oct-05-2023",
+      "sentences": "•  Now let's take a look at how Okta AI can help you harness the full power of your security stack to detect, assess and respond to identity threats.\n•  What Alvin doesn't know is that as he clicks this link, Okta AI is working behind the scenes to continuously evaluate risk from across our tech ecosystem.\n•  Using log investigator with Okta AI, we can ask something like why was Alvin logged out.\n•  Its natural language processing capabilities will give us an answer in plain English.\n•  All this is contributing to a user's risk score, which Okta AI continuously evaluates.\n•  I've been meaning to check out the new policy recommender with Okta AI to ensure that our access policies are as secure as possible.\n•  We're using Okta AI to do 3 powerful things.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 1
+      },
+      "evidence": {
+        "conceptual": [
+          "Its natural language processing capabilities will give us an answer in plain English."
+        ],
+        "critical": [],
+        "applied": [
+          "We're using Okta AI to do 3 powerful things."
+        ],
+        "governance": [
+          "I've been meaning to check out the new policy recommender with Okta AI to ensure that our access policies are as secure as possible."
+        ]
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 1, governance 1. Governance 1 on the human codes. The text describes AI evaluating risk and recommending access policies so they are as secure as possible; the human codes treat this AI-related security and access control content as governance 1. Critical is 0: no limitation or risk of the AI system itself is evaluated. Applied 1: stated uses without a measured outcome.",
+      "selection_reason": "governance 0/1 boundary: AI-related security / access control coded governance 1 (16 of the 25 governance 1 calls the baseline scored 0 mention security, fraud, risk or compliance)"
+    },
+    {
+      "uid": "TR005",
+      "call_title": "Adobe Inc., Q4 2024 Earnings Call, Dec 11, 2024",
+      "sentences": "•  The AI innovations we have delivered enable our customers to accelerate the delivery of personalized experiences at scale and have been built to satisfy enterprise governance requirements.\n•  Adobe Experience Platform AI Assistant empowers marketers to automate tasks and generate new audiences and journeys.\n•  GenStudio is the answer to address how marketing is going to transform in the era of AI for CMOs, CIOs and CFOs.\n•  AI innovations delivered in the premium tiers and add-ons helped us close our largest bookings quarter ever, with key global customer wins including Air Canada, Allianz, American Express, Bank of America, BMW, Centene, CIBC, Cisco, Disney, Fanatics, Gap, GM, JPMorgan Chase, PayPal, Samsung, Tesco and Wells Fargo.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "Adobe Experience Platform AI Assistant empowers marketers to automate tasks and generate new audiences and journeys."
+        ],
+        "critical": [],
+        "applied": [
+          "Adobe Experience Platform AI Assistant empowers marketers to automate tasks and generate new audiences and journeys."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 1, governance 0. Governance 0 on the human codes. A passing claim that products were 'built to satisfy enterprise governance requirements' names governance without describing any control, safeguard, or rule, so it stays 0. Conceptual 1 and applied 1: a named product tied to a use.",
+      "selection_reason": "governance 0 side: passing mention of 'governance requirements' (baseline scored 1)"
+    },
+    {
+      "uid": "TR006",
+      "call_title": "CyberArk Software Ltd., Q4 2024 Earnings Call, Feb 13, 2025",
+      "sentences": "•  And fourth, securing against AI and the securing of AI are soon to be among the biggest challenges we will all face.\n•  AI makes attackers more efficient, more pervasive and ultimately more successful.\n•  At the same time, AI is introducing brand-new identities in the form of the agentic workforce that will quickly outnumber humans and just like every other identity will need CyberArk to be secure.\n•  Leveraging AI-driven role management, Zilla automates the processes of identity compliance and provisioning, making governance easy, intuitive and all-inclusive for the modern enterprise.\n•  As a born in the cloud AI software and application development company, they understand the power of a unified platform to scale and innovate in a cloud-first world.\n•  As I mentioned earlier, another topic customers are asking us about, as it relates to machine identities, is AI and in particular, agentic AI and how this impacts their security posture.\n•  When artificial intelligence evolves from generative AI and copilots to agents with the autonomy to complete tasks on a user's behalf, they can create their own automations entirely.\n•  Like humans, AI agents will need the right level of privilege controls.\n•  We look forward to talking more about the agentic AI opportunity and the detailed plans we have in this area at the upcoming Investor Day.\n•  And ultimately, when you take both the tools we offer around dynamic secure access on the human side and the machine identity offerings in our solution set, you combine them together, we can actually take agentic AI, take those agents themselves and make sure that they're secured as their privilege changes in a dynamic environment.\n•  We can sit right next to them and solve the modern problem, but solve it much faster, quicker with an AI-generated approach.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 0,
+        "applied": 1,
+        "governance": 2
+      },
+      "evidence": {
+        "conceptual": [
+          "When artificial intelligence evolves from generative AI and copilots to agents with the autonomy to complete tasks on a user's behalf, they can create their own automations entirely."
+        ],
+        "critical": [],
+        "applied": [
+          "Leveraging AI-driven role management, Zilla automates the processes of identity compliance and provisioning, making governance easy, intuitive and all-inclusive for the modern enterprise."
+        ],
+        "governance": [
+          "Like humans, AI agents will need the right level of privilege controls.",
+          "And fourth, securing against AI and the securing of AI are soon to be among the biggest challenges we will all face."
+        ]
+      },
+      "note": "Human codes in data/coding.csv: conceptual 2, critical 0, applied 1, governance 2. Governance 2 on the human codes: the speaker develops how AI systems and AI agents themselves must be secured and given privilege controls, across several connected points. Critical is 0 on the human codes: calling securing AI a big challenge is framed as a market need, not an evaluation of AI reliability or readiness. Conceptual 2 for the connected reasoning from generative AI to autonomous agents and machine identities. Applied 1.",
+      "selection_reason": "governance 1/2 boundary (2 side) and critical 0 side (baseline: governance 0, critical 1)"
+    },
+    {
+      "uid": "TR125",
+      "call_title": "GoDaddy Inc. Presents at 53rd Annual JPMorgan Global Technology, Media and Communications Conference, May-13-2025 10:10 AM",
+      "sentences": "•  It's our AI-driven platform for those of you who are new to the story, Airo.\n•  Not that we don't use LLMs at some level, but we control that because it fills in the blanks to our own technology and just provides value, but we have one choke point that we also can control the volume that's going there.\n•  But this was the investment we made because we knew that this is -- for the micro business, these tools, their ability to use AI themselves to do business better we were going to be able to provide them that ability.\n•  So their ability to set up their next gigs in the coming weeks through our conversations tool, which is AI-driven.\n•  It's done automatically through Airo through our AI tools.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "Not that we don't use LLMs at some level, but we control that because it fills in the blanks to our own technology and just provides value, but we have one choke point that we also can control the volume that's going there."
+        ],
+        "critical": [],
+        "applied": [
+          "So their ability to set up their next gigs in the coming weeks through our conversations tool, which is AI-driven."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 1, governance 0. Critical 0 and governance 0 on the human codes. Controlling how much traffic goes to LLMs is a cost and architecture choice, not an evaluation of the AI system and not a safeguard on it. Conceptual 1 and applied 1.",
+      "selection_reason": "critical 0 side and governance 0 side: 'we control the volume to LLMs' (baseline scored critical 1, governance 1)"
+    },
+    {
+      "uid": "TR107",
+      "call_title": "Commerzbank AG - Analyst/Investor Day",
+      "sentences": "•  That's namely shoring and sourcing, that's artificial intelligence and strategic partnerships.\n•  Clearly, artificial intelligence, that's a very, very significant innovation we see.\n•  However, it's important to have in mind that you need to have a good and modern and flexible infrastructure and a data-driven platform actually to really be able to use AI in an effective manner.\n•  And here, again, we can build on the foundation we've created in the last couple of years and really applying AI in a way that it benefits Commerzbank.\n•  To be a bit more specific, we plan to apply AI in several business units, and that's in our customer-facing units, but that's also affecting back office units and even in risk and compliance functions where we want to use AI to support our business.\n•  And by leveraging AI, we could reduce the amount of time that is needed to do this documentation by more than 2/3, so that's a significant amount of time that now is freed up for other essential tasks.\n•  We have bundled our AI initiatives within a strategic AI program.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 2,
+        "governance": 1
+      },
+      "evidence": {
+        "conceptual": [
+          "However, it's important to have in mind that you need to have a good and modern and flexible infrastructure and a data-driven platform actually to really be able to use AI in an effective manner."
+        ],
+        "critical": [],
+        "applied": [
+          "And by leveraging AI, we could reduce the amount of time that is needed to do this documentation by more than 2/3, so that's a significant amount of time that now is freed up for other essential tasks."
+        ],
+        "governance": [
+          "To be a bit more specific, we plan to apply AI in several business units, and that's in our customer-facing units, but that's also affecting back office units and even in risk and compliance functions where we want to use AI to support our business."
+        ]
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 2, governance 1. Critical 0 on the human codes: needing modern infrastructure and a data platform to use AI is a technical requirement (conceptual), not a critical evaluation. Applied 2: a measured outcome (documentation time cut by more than 2/3). Governance 1 on the human codes: AI applied in risk and compliance functions within a bundled strategic AI program.",
+      "selection_reason": "critical 0 side (prerequisite language), applied 2 side (measured outcome), governance 1"
+    },
+    {
+      "uid": "TR113",
+      "call_title": "Uber Technologies, Inc. Presents at Morgan Stanley Technology, Media & Telecom Conference, Mar-03-2025 02:35 PM",
+      "sentences": "•  So I think that, first of all, like many of these technologies, and you look, for example, at GenAI and large language models, et cetera, you are seeing a real fragmentation of those markets, right?\n•  You're seeing the same thing happen in the GenAI environment as well.\n•  So I think every company in the world is going to tell you that they're using AI and it's awesome and they're going to save lots of money.\n•  Actually, getting AI to work in an enterprise at scale, I'm finding, is really, really hard.\n•  The scale areas where you're going to see material differences in terms of AI and these larger models and having big impact on our business are with customer service.\n•  We are kind of -- we have AI models optimizing each of those.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 1,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "So I think that, first of all, like many of these technologies, and you look, for example, at GenAI and large language models, et cetera, you are seeing a real fragmentation of those markets, right?"
+        ],
+        "critical": [
+          "Actually, getting AI to work in an enterprise at scale, I'm finding, is really, really hard."
+        ],
+        "applied": [
+          "We are kind of -- we have AI models optimizing each of those."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 1, applied 1, governance 0. Critical 1: one explicit, brief implementation barrier ('getting AI to work in an enterprise at scale is really hard'), not a developed evaluation. Governance 0. Applied 1: models optimizing functions without a measured result.",
+      "selection_reason": "critical 0/1 boundary (1 side): one brief barrier"
+    },
+    {
+      "uid": "TR244",
+      "call_title": "Evotec SE - Analyst/Investor Day",
+      "sentences": "•  I head a small group in Evotec, which leads the AI and machine learning models.\n•  I'm sure there is nobody in this group who doesn't know what AI and ML is.\n•  What does it mean by AI?\n•  When we say linear AI, ML, machine learning models, these are small models, had been there in the industry, had proven it very successful.\n•  Two key books published in the last 2 years has been seminal in bringing this AI-based models into drug discovery and also how can you deploy these AI tools in pharma industry.\n•  Having said that, one question we want to ask, does AI live the hype around in delivering drugs to the pharma industry?\n•  The first graph, we can see, since the entry of the -- rise of the machines in pharma industries and our machine learning models in the industry, from [ 2010 ] to 2021, we can see there is significant increase and the increase is more in, obviously, the light blue color, which is a discovery and preclinical phase of the pipelines.\n•  And also, we could see with the top pharma compared to the AI companies, the impact is in the area where the availability of the quality data sets were more, kinases, GPCRs, catalytic receptors, where you can see large amount of quality data was available where the AI companies could make a impact.\n•  If we see on the right-hand side there, that the drugs which has been enabled by AI had already shown to reduce the time to -- from bench to clinic as a median compared to the -- before the AI companies.\n•  It's the quality that we really need to judge whether AI is going to deliver this or not.\n•  And the knowledge graph can be mined using the machine learning and in AI-based graph neural network approaches.\n•  Based on that, we can take it down the target into a machine learning approach and validate those targets into the lab, using the Omics profile, transcriptomics, metabolomic profiling and then make that screening and to lead into the target validation by using the right assay development.\n•  The second example we can delve dive into a generative AI.\n•  Within 12 weeks of time, we trained the reinforcement learning.\n•  Reinforcement learning models are, again, deep learning models.\n•  We want to churn them using the machine learning model, which are specific to organs, organ-specific models are there.\n•  These are the type of, again, deep learning models.\n•  All this is possible because of the key essence that we have been using, these machine learning models and they are not magic, by the way, they are really the challenges that we have been doing to the science and technology, enabling them via the [indiscernible].\n•  We can then do a lot of machine learning models, which is already pretrained there, store for the laymen, the scientists doesn't have to build these models.\n•  I would like to end here with one final message that for AI/ML to be successful, the evolution of AI/ML if we believe it, it's not one model, but the ensemble of the models that we need to bring in, the best-in-class models that need to be brought in to make sure that success stay.\n•  What we need is the wet lab support, the model, the validation, again, back in wet lab and the cyclic manner, the DMTA cycle is what AI is going to make impact into the drug discovery.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 2,
+        "applied": 2,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "When we say linear AI, ML, machine learning models, these are small models, had been there in the industry, had proven it very successful."
+        ],
+        "critical": [
+          "Having said that, one question we want to ask, does AI live the hype around in delivering drugs to the pharma industry?",
+          "And also, we could see with the top pharma compared to the AI companies, the impact is in the area where the availability of the quality data sets were more, kinases, GPCRs, catalytic receptors, where you can see large amount of quality data was available where the AI companies could make a impact.",
+          "It's the quality that we really need to judge whether AI is going to deliver this or not."
+        ],
+        "applied": [
+          "Based on that, we can take it down the target into a machine learning approach and validate those targets into the lab, using the Omics profile, transcriptomics, metabolomic profiling and then make that screening and to lead into the target validation by using the right assay development."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 2, critical 2, applied 2, governance 0. Critical 2 on the human codes: the speaker sets up and works through whether AI lives up to the hype in drug discovery, using evidence and quality criteria to judge it. That is a developed evaluation, not one brief caveat. Conceptual 2 (connected technical reasoning about model types and data). Applied 2: a worked path from target data through machine learning to lab validation. Governance 0.",
+      "selection_reason": "critical 1/2 boundary (2 side): developed evaluation (baseline scored 1)"
+    },
+    {
+      "uid": "TR083",
+      "call_title": "Nestlé India Limited - Shareholder/Analyst Call",
+      "sentences": "•  Data and AI is becoming an important element of who we are.\n•  And this, as I will come to, will help us in terms of the use of AI for predictive models of demand generation which will be a little bit more granular and accurate simply because we have been able to track data analytics at the ground level, at the base level.\n•  This is all the power of analytics and artificial intelligence that we are able to put in.\n•  The increasing name of the game in this country is going to be enhanced efficiency and effectiveness and the use of AI for predicting the future rather than just having brands and differentiation.\n•  On value chain, we have not only what I talked about, but also digital manufacturing operations across our factories to digitally monitor and to make paperless and to make real-time efficiency and effectiveness monitoring across our factories, and of course, employees in terms of the everyday AI.\n•  And that brings me to the AI journey of the company that started in 2019 when we set up MIDAS, which is our multi analytic system that we put together, moved into the must-sell list as far as AI was concerned, which was more a prescriptive model.\n•  And then, of course, AI to manage the workarounds as well.\n•  Today, we have an interesting project called MROI, which is a return on investment of marketing support that will give us a simulation using AI of all that you have done in the past in terms of activities, budgets, returns and outcomes.\n•  So therefore, AI is becoming now an increasingly an important part of our journey, and we will be incorporating it wherever we find the usage Currently, it is done in a very pragmatic way in a very measured manner.\n•  We know that AI is not AI, unless chain management is managed.\n•  Otherwise, we can be putting in a lot of money on AI and on digital and not having too much of a return as a company.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 1,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "And this, as I will come to, will help us in terms of the use of AI for predictive models of demand generation which will be a little bit more granular and accurate simply because we have been able to track data analytics at the ground level, at the base level."
+        ],
+        "critical": [
+          "Otherwise, we can be putting in a lot of money on AI and on digital and not having too much of a return as a company.",
+          "So therefore, AI is becoming now an increasingly an important part of our journey, and we will be incorporating it wherever we find the usage Currently, it is done in a very pragmatic way in a very measured manner."
+        ],
+        "applied": [
+          "Today, we have an interesting project called MROI, which is a return on investment of marketing support that will give us a simulation using AI of all that you have done in the past in terms of activities, budgets, returns and outcomes."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 2, critical 1, applied 1, governance 0. Critical 1 (not 2): a brief appraisal that AI spending may not return value and should be adopted in a measured way, without developed evidence or decision logic. Conceptual 2: connected reasoning about ground-level data making predictive models more granular and accurate. Applied 1 on the human codes: several named uses without a measured outcome. Governance 0.",
+      "selection_reason": "critical 1/2 boundary (1 side); conceptual 2 with applied 1"
+    },
+    {
+      "uid": "TR024",
+      "call_title": "Hugo Boss AG - Special Call",
+      "sentences": "•  So when we talk about operations, when we talk about operations, we talk about sourcing and production, we talk about logistics, we talk about IT and AI is getting much more important, and we talk about the key support functions.\n•  This is the whole supply chain that we are thinking of, and we have a fundamental belief that if we invest into AI, if we invest into digital capabilities, we can make much better, smarter decisions.\n•  One example was the logistics with the in-sourcing and Filderstadt will also drive our efficiency, but also the use of AI when it comes to content creation, when it comes to translation, when it comes to all the processes.\n•  AI is a big game changer for us, and this will also drive our efficiency going forward.\n•  But now we are also considering to run a project, which is a global business solution piece where we are intending to harmonizing the processes, finding the right location for global business solutions and then optimize them with AI.\n•  So every function has to deliver kind of efficiency going forward and I think it also make sense because AI and all these things are actually concerning every function going forward.\n•  And also for the back office for the support functions, we talked about AI and automization.\n•  And I think with also with AI and all the things that are happening, plus the projects that now come to an end, we have a good foundation really to drive efficiency going further and had to have really, I think this is important to have structural cost improvements going forward they will remain and that we will keep the operating expenses definitely under control.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 2,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "This is the whole supply chain that we are thinking of, and we have a fundamental belief that if we invest into AI, if we invest into digital capabilities, we can make much better, smarter decisions."
+        ],
+        "critical": [],
+        "applied": [
+          "One example was the logistics with the in-sourcing and Filderstadt will also drive our efficiency, but also the use of AI when it comes to content creation, when it comes to translation, when it comes to all the processes.",
+          "So every function has to deliver kind of efficiency going forward and I think it also make sense because AI and all these things are actually concerning every function going forward."
+        ],
+        "governance": []
+      },
+      "note": "Human codes in data/coding.csv: conceptual 1, critical 0, applied 2, governance 0. Applied 2 on the human codes: AI is applied across content creation, translation, back-office support functions and process optimization throughout the operation, i.e. integration at scale across functions. Conceptual 1 (real AI content, no technical chain). Critical 0 and governance 0.",
+      "selection_reason": "applied 1/2 boundary (2 side): AI integrated across many functions (baseline scored 1); conceptual 1"
+    }
+  ]
+}

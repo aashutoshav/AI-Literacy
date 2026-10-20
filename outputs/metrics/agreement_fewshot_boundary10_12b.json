@@ -1,0 +1,69 @@
+{
+  "n": 133,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.4808743169398907,
+      "quadratic_kappa": 0.5223191380194971,
+      "kripp_alpha_ordinal": 0.5487874727002373,
+      "exact_k": 98,
+      "exact_n": 133,
+      "exact_pct": 73.6842105263158
+    },
+    "critical": {
+      "linear_kappa": 0.43050572850364555,
+      "quadratic_kappa": 0.45983159980188215,
+      "kripp_alpha_ordinal": 0.4664548525678641,
+      "exact_k": 98,
+      "exact_n": 133,
+      "exact_pct": 73.6842105263158
+    },
+    "applied": {
+      "linear_kappa": 0.527674317886531,
+      "quadratic_kappa": 0.5949429846306395,
+      "kripp_alpha_ordinal": 0.5766690572171301,
+      "exact_k": 93,
+      "exact_n": 133,
+      "exact_pct": 69.92481203007519
+    },
+    "governance": {
+      "linear_kappa": 0.5500067668155366,
+      "quadratic_kappa": 0.6417411916819309,
+      "kripp_alpha_ordinal": 0.5493512460258616,
+      "exact_k": 108,
+      "exact_n": 133,
+      "exact_pct": 81.203007518797
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.5488290168960793,
+    "quadratic_kappa": 0.7735244034587231,
+    "kripp_alpha_ordinal": 0.7105593341285653,
+    "kripp_alpha_interval": 0.7743758154757956,
+    "exact_k": 40,
+    "exact_n": 133,
+    "exact_pct": 30.075187969924812,
+    "icc_a1": 0.7748438261485985,
+    "icc_a1_pingouin_icc2": 0.7748438261485981,
+    "icc_a1_ci95_bootstrap": [
+      0.6818676661079391,
+      0.8399755002806
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.19548872180451127,
+    "human_composite_mean": 0.7875939849624061,
+    "model_composite_mean": 0.7875939849624061
+  },
+  "inputs": {
+    "preds": "outputs/preds_fewshot_boundary10_12b_n133.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 133,
+    "n_matched_uid": 133,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 10
+  }
+}

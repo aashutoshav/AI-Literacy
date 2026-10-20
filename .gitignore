@@ -28,6 +28,8 @@ outputs/*
 !outputs/_dry_*.jsonl
 !outputs/metrics/
 !outputs/metrics/**
+!outputs/analysis/
+!outputs/analysis/**
 *.pt
 *.bin
 *.safetensors

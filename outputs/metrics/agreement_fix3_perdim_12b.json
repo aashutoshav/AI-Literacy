@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.4657884388517499,
+      "quadratic_kappa": 0.45419847328244267,
+      "kripp_alpha_ordinal": 0.48950329738020315,
+      "exact_k": 107,
+      "exact_n": 143,
+      "exact_pct": 74.82517482517483
+    },
+    "critical": {
+      "linear_kappa": 0.47222485095107414,
+      "quadratic_kappa": 0.5183022681338424,
+      "kripp_alpha_ordinal": 0.5327886522480558,
+      "exact_k": 107,
+      "exact_n": 143,
+      "exact_pct": 74.82517482517483
+    },
+    "applied": {
+      "linear_kappa": 0.3856609620395802,
+      "quadratic_kappa": 0.46840148698884754,
+      "kripp_alpha_ordinal": 0.40420373883011695,
+      "exact_k": 84,
+      "exact_n": 143,
+      "exact_pct": 58.74125874125874
+    },
+    "governance": {
+      "linear_kappa": 0.7282728272827282,
+      "quadratic_kappa": 0.7777141454634705,
+      "kripp_alpha_ordinal": 0.7228783380511934,
+      "exact_k": 124,
+      "exact_n": 143,
+      "exact_pct": 86.7132867132867
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.4954183648349243,
+    "quadratic_kappa": 0.7211290516372912,
+    "kripp_alpha_ordinal": 0.6679264593662729,
+    "kripp_alpha_interval": 0.7201370111647345,
+    "exact_k": 44,
+    "exact_n": 143,
+    "exact_pct": 30.76923076923077,
+    "icc_a1": 0.7225381067916208,
+    "icc_a1_pingouin_icc2": 0.7225381067916204,
+    "icc_a1_ci95_bootstrap": [
+      0.6278306531162917,
+      0.7954894345589946
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.22552447552447552,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.8618881118881119
+  },
+  "inputs": {
+    "preds": "outputs/preds_fix3_perdim_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}

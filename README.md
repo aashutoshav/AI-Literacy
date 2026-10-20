@@ -121,4 +121,4 @@ bash scripts/download_gemma.sh both
 
 ## Results log
 
-Experiment metrics are accumulated in **[RESULTS.md](RESULTS.md)** — append each new run there.
+Best-run results are in **[RESULTS.md](RESULTS.md)**; every run, run details and method notes are in **[EXHAUSTIVE.md](EXHAUSTIVE.md)** — append each new run there.
