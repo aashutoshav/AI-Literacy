@@ -200,7 +200,68 @@ FEWSHOT_HEADER_V4 = FEWSHOT_HEADER_V3.replace(
     "Applied: a stated use or deployment is 1. Score 2 only for depth, scale, integration, or a measured outcome. Between 1 and 2, assign 1.",
 )
 
-PROMPT_VERSIONS = ("sheet", "v3", "v4")
+# ---------------------------------------------------------------------------
+# Prompt v5 ("fix5"), behind --prompt-version v5. Starts from v4 and revises the
+# conceptual and applied 1-vs-2 rules, the conceptual and applied 0-vs-1 rules, the
+# critical and governance thresholds, and the base-rate note, from the DEV-split miss
+# analysis of both coding sets (outputs/analysis/misses_n200_dev.md). Base rates are
+# the pooled DEV distribution (170 calls). v3 and v4 are unchanged.
+# ---------------------------------------------------------------------------
+
+_PREAMBLE_V5 = """You are a careful research coder measuring AI literacy in executive earnings-call excerpts. The four dimensions follow AI-literacy constructs in Long and Magerko (2020), Ng et al. (2021), and Carolus et al. (2023).
+
+Score ONLY from the provided AI-related sentences. Do not use outside knowledge about the company, the speaker, or the industry. If evidence for a dimension is missing, score that dimension 0.
+
+The score must match the human coding sheet, not a stricter written guide. Typical sheet distribution (% of calls at 0 / 1 / 2): conceptual about 7 / 59 / 34; applied about 12 / 54 / 34; critical about 72 / 24 / 4; governance about 80 / 16 / 4. So a 2 on conceptual or applied is common (about one call in three), while critical and governance are 0 on most calls.
+
+Score what the text shows. Each dimension is an integer 0, 1, or 2. Excerpts range from one or two sentences to dozens: a short excerpt with one brief AI mention rarely supports more than 1, while an excerpt that develops AI content over several specific statements often earns 2 on conceptual and applied. Do not default to 1 when the text clearly develops a dimension. Naming AI, praising AI, or calling AI strategic is not a 2 on its own; repeated generic claims are not development.
+"""
+
+DIM_SUMMARY_V5 = {
+    "conceptual": "- conceptual: how much real, specific AI content is present: what AI systems are, do, or need. A bare mention or label is 0; brief real AI content is 1; specific AI content explained or developed over several statements is 2.",
+    "critical": "- critical: the text raises a limitation, risk, threat, accuracy problem, uncertainty, or barrier connected to AI. Using, selecting, or praising AI is not critical.",
+    "applied": "- applied: what AI is actually used for, or the AI product or service the company offers. A brief stated use or offering is 1; several concrete uses with what AI does in each, a measured outcome, a worked path, or deployment at scale is 2.",
+    "governance": DIM_SUMMARY_V3["governance"],
+}
+
+DIM_RUBRIC_V5 = {
+    "conceptual": """conceptual:
+- 0 = AI is only named: inside an analyst question with no answer about AI, as a passing buzzword, or as a label with nothing said about what the AI is, does, or needs. This score is uncommon.
+- 1 = brief real AI content: a capability, product, model, tool, or data or hardware requirement, mentioned without explanation; AI described as a market driver or source of demand ("demand from AI data centers is driving our sales"); or a short list of AI product names. Most one- to three-sentence excerpts are 1.
+- 2 = specific AI content explained or developed across several statements. Any of these is enough: what particular AI systems do, described concretely (inputs, outputs, tasks) for more than one capability; how a model or system works, or distinctions among model types (small versus large models, training versus inference, in-house versus external models, generative versus predictive); or AI's technical requirements together with why they arise (more GPUs raise power use, which needs more capacitors or larger batteries; data must be cleaned before models are reliable). A long excerpt that keeps returning to specific AI capabilities or requirements is 2 even without a mechanism.
+""" + _TECH_REQ_NOTE,
+    "applied": """applied:
+- 0 = no use or offering of AI by the company, its customers, or partners: AI appears only as a general trend, an analyst question, or hype.
+- 1 = a stated use, tool, product, rollout, or plan, without detail: "we use AI in our workflows", one named AI product with its function, or the company building, selling, or financing products or capacity for AI (chips, components, power, data-center space). Supplying AI demand counts as 1, not 0.
+- 2 = the text shows AI in concrete use in at least one of these ways: two or more distinct uses, each with what the AI does in it (drafting credit memos and pricing loans; summarising calls and answering agents' questions); a measured outcome tied to the AI use (time cut by a stated share, a count of users, interactions, or members, a before-and-after result); a worked path from input to AI output to how people use it; or deployment at scale or integrated across functions or products, described specifically. A bare list of product names, or "AI across the business" with no specific use, stays 1.""",
+    "critical": """critical:
+- 0 = no limitation, risk, threat, or concern connected to AI. Describing, using, deploying, selecting, or praising AI is not critical. Commercial uncertainty about revenue or demand timing is not critical. Prerequisites stated neutrally (AI needs data, compute, or a modern platform) and timing remarks such as "it's early days" stay 0 unless framed as a limitation, risk, or barrier.
+- 1 = at least one explicit remark that AI carries a risk, threat, limitation, accuracy or reliability problem, cost or return doubt, readiness barrier, or appropriate-use boundary. This includes AI-enabled threats (attackers or fraudsters using AI), AI disruption risk to the business, a statement that human judgment must stay in control because AI is not enough, and a remark that AI's quality depends on data or algorithms. One such remark is enough. Read long excerpts all the way through: critical remarks are often one sentence inside a long discussion of uses.
+- 2 = a sustained or elaborated appraisal: the speaker works through whether AI delivers, with evidence or criteria, a limitation plus mitigation, several connected concerns, or explicit decision logic about readiness, constraints, or tradeoffs.""",
+    "governance": DIM_RUBRIC_V3["governance"].replace(
+        "- 1 = a brief mention of such a control or concern in relation to AI or AI deployment:",
+        "- 1 = a brief mention of such a control or concern in relation to AI or AI deployment, including an AI product or service whose purpose is security, safety, fraud prevention, or compliance:",
+    ),
+}
+
+SYSTEM_PROMPT_V5 = (
+    _PREAMBLE_V5
+    + "\nDimensions:\n"
+    + "\n".join(DIM_SUMMARY_V5[d] for d in ("conceptual", "critical", "applied", "governance"))
+    + "\n\n"
+    + "\n\n".join(DIM_RUBRIC_V5[d] for d in ("conceptual", "applied", "critical", "governance"))
+    + "\n\n"
+    + _OUTPUT_RULES
+)
+
+FEWSHOT_HEADER_V5 = """Below are worked examples of correct coding. Match the human coding sheet.
+Conceptual: a bare mention is 0; brief real AI content is 1; specific AI content explained or developed over several statements (what systems do, how they work, technical requirements and why) is 2.
+Applied: a brief stated use or AI offering, including supplying products for AI, is 1; several concrete uses with what AI does in each, a measured outcome, a worked path, or specific deployment at scale is 2.
+Critical: one explicit risk, threat, limitation, or accuracy concern connected to AI is 1; an elaborated appraisal is 2; neutral prerequisites and "early days" are 0.
+Governance: security, privacy, fraud, risk, compliance, access control, or human review connected to AI is at least 1; a passing word with no substance is 0; elaborated controls around AI are 2.
+"""
+
+PROMPT_VERSIONS = ("sheet", "v3", "v4", "v5")
 
 
 def system_prompt_for(version: str = "sheet") -> str:
@@ -208,6 +269,8 @@ def system_prompt_for(version: str = "sheet") -> str:
         return SYSTEM_PROMPT_V3
     if version == "v4":
         return SYSTEM_PROMPT_V4
+    if version == "v5":
+        return SYSTEM_PROMPT_V5
     return SYSTEM_PROMPT
 
 
@@ -254,7 +317,7 @@ def build_messages(
     messages: list[dict[str, str]] = [{"role": "system", "content": system_prompt_for(prompt_version)}]
 
     if exemplars:
-        messages.append({"role": "user", "content": {"v3": FEWSHOT_HEADER_V3, "v4": FEWSHOT_HEADER_V4}.get(prompt_version, FEWSHOT_HEADER)})
+        messages.append({"role": "user", "content": {"v3": FEWSHOT_HEADER_V3, "v4": FEWSHOT_HEADER_V4, "v5": FEWSHOT_HEADER_V5}.get(prompt_version, FEWSHOT_HEADER)})
         messages.append(
             {
                 "role": "assistant",
@@ -333,11 +396,11 @@ Return JSON with this exact shape:
 def perdim_system_prompt(dim: str, prompt_version: str = "sheet") -> str:
     if dim not in DIM_RUBRIC:
         raise KeyError(f"unknown dimension {dim!r}")
-    v3 = prompt_version in ("v3", "v4")
-    summ = {"v3": DIM_SUMMARY_V3, "v4": DIM_SUMMARY_V4}.get(prompt_version, DIM_SUMMARY)
-    rubr = {"v3": DIM_RUBRIC_V3, "v4": DIM_RUBRIC_V4}.get(prompt_version, DIM_RUBRIC)
+    v3 = prompt_version in ("v3", "v4", "v5")
+    summ = {"v3": DIM_SUMMARY_V3, "v4": DIM_SUMMARY_V4, "v5": DIM_SUMMARY_V5}.get(prompt_version, DIM_SUMMARY)
+    rubr = {"v3": DIM_RUBRIC_V3, "v4": DIM_RUBRIC_V4, "v5": DIM_RUBRIC_V5}.get(prompt_version, DIM_RUBRIC)
     parts = [
-        _PREAMBLE_V3 if v3 else _PREAMBLE,
+        {"v5": _PREAMBLE_V5}.get(prompt_version, _PREAMBLE_V3 if v3 else _PREAMBLE),
         f"\nYou are scoring ONE dimension only: {dim}. Ignore the other AI-literacy dimensions.\n",
         summ[dim],
         "",

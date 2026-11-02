@@ -1,0 +1,243 @@
+{
+  "note": "10 exemplars from the DEV half of data/coding_n200.csv (data/split_n200.csv, seed 20261031); scores are the human codes. Use with --exclude-exemplars so they are not scored on DEV; TEST is unaffected. None is in data/coding.csv.",
+  "exemplars": [
+    {
+      "uid": "S2-0016",
+      "call_title": "Expedia Group, Inc., Q3 2023 Earnings Call, Nov 02, 2023",
+      "sentences": "•  We continue to utilize our industry-leading AI and ML capabilities to radically improve all aspects of our traveler experience.\n•  We anticipate continued strength from B2B going forward, driven by our continuing push into the addressable market along with the advantages that our platform improvements will bring to the B2B business, whether in core technology, the application of AI and machine learning or in service and payments.\n•  We've also launched tools to aid research into a given destination, hotel prices, weather, best times to visit, crowd levels and even generative AI-powered tools to determine the best neighborhoods to stay, giving the traveler one place to research where and when to stay in their dream location.\n•  We now also leverage generative AI to scrape reviews to answer traveler questions about amenities and property details, so no more sorting through hundreds of reviews to find out how strong the WiFi is, the quality of the pool or whether you're going to like the breakfast.\n•  We also launched the first project of its kind, EG Labs, which allows interested customers to test our AI-powered beta products, allowing them to play a hand in how we shape the future of travel.\n•  I could literally go on and on, but the takeaway is no one in travel is innovating faster than us and with so much important platform work behind us and with our leading capabilities and machine learning and AI, we will out-innovate in the space for many years to come.\n•  There's a lot of discovery going on in the world of generative AI around prompts and how to get people into the right questions, et cetera.\n•  Now as I mentioned, we are using generative AI in many other ways besides just that, hey, I want to go to Paris, when is a good time to go to Paris question, but we're using it in our reviews to help customers sift through reviews and ask a simple question.\n•  So generative AI is a bigger story for us long term and for everybody.\n•  And ultimately, we want to use AI broadly and generative AI to take you more easily through the collective journey.\n•  Whatever part of it you want to -- you can use it best for, whether that's home page, discovery, kind of greenfields trying to figure out a trip or anywhere through search, sort, purchase, comparison, all of those places that are complicated areas for customers, we want to help use AI, use generative AI where appropriate to just take friction out of that journey end-to-end.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 0,
+        "applied": 2,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "We now also leverage generative AI to scrape reviews to answer traveler questions about amenities and property details",
+          "generative AI-powered tools to determine the best neighborhoods to stay"
+        ],
+        "critical": [],
+        "applied": [
+          "We now also leverage generative AI to scrape reviews to answer traveler questions about amenities and property details",
+          "we're using it in our reviews to help customers sift through reviews and ask a simple question"
+        ],
+        "governance": []
+      },
+      "note": "Conceptual 2: several specific AI capabilities are described with what they do (answering questions from reviews, choosing neighbourhoods, research tools). Applied 2: several concrete uses, each with what the AI does.",
+      "selection_reason": "conceptual 1/2 and applied 1/2 boundary: developed, specific uses"
+    },
+    {
+      "uid": "S2-0065",
+      "call_title": "Enovix Corporation, Q2 2024 Earnings Call, Jul 31, 2024",
+      "sentences": "•  As we all saw over the course of the last quarter, leading OEMs are now starting to announce AI features, which will become native and standard in the next-generation smartphones.\n•  As I sit here and observe what's happening, it's my belief that the 4,000, 5,000 milliampere-hour battery in the smartphones in our pockets today will soon go to more than 6,000 milliampere-hour and beyond due to AI and other enhanced features.\n•  Now we are deeply engaged with leaders in the smartphone market, and as the industry hits the inflection point towards larger power requirements due to the AI features, this will really help us get our batteries into production in the smartphone space.\n•  So I've mentioned before, I think in the last call, one of the toughest batteries to make in the consumer electronic space is actually the battery for the smartphones, because it is the largest market, the demands are very high, it's got a big display, power-hungry application processors, memories, the AI requirements are coming in strong.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "the 4,000, 5,000 milliampere-hour battery in the smartphones in our pockets today will soon go to more than 6,000 milliampere-hour and beyond due to AI and other enhanced features",
+          "as the industry hits the inflection point towards larger power requirements due to the AI features"
+        ],
+        "critical": [],
+        "applied": [
+          "this will really help us get our batteries into production in the smartphone space"
+        ],
+        "governance": []
+      },
+      "note": "Conceptual 2: AI's technical requirement is explained with why it arises (AI features raise power needs, so batteries must grow). Applied 1: the company supplies a product for AI demand, without detail of AI use.",
+      "selection_reason": "conceptual 2 from requirements with reasons; applied 1 for supplying AI demand"
+    },
+    {
+      "uid": "S2-0066",
+      "call_title": "Paycor HCM, Inc., Q4 2023 Earnings Call, Aug 16, 2023",
+      "sentences": "•  Further strengthening our suite of artificial intelligence solutions, we also launched an AI-enabled job description generator.\n•  This offering strengthens our suite of artificial intelligence solutions, which includes Paycor Smart Sourcing and Predictive Resignation.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "we also launched an AI-enabled job description generator"
+        ],
+        "critical": [],
+        "applied": [
+          "we also launched an AI-enabled job description generator",
+          "which includes Paycor Smart Sourcing and Predictive Resignation"
+        ],
+        "governance": []
+      },
+      "note": "Conceptual 1 and applied 1: AI products are named with a short function, nothing developed.",
+      "selection_reason": "short list of AI products stays 1/1"
+    },
+    {
+      "uid": "S2-0009",
+      "call_title": "nCino, Inc., Q4 2024 Earnings Call, Mar 26, 2024",
+      "sentences": "•  As Pierre mentioned, a recent publication from Accenture concluded that banking is likely to be more profoundly impacted by generative AI than any other industry based on the potential for automation and augmentation.\n•  One of those skills is credit memo narratives, which leverages generative AI to automate the creation of a credit memo, a required and complex deliverable in every commercial loan that is used when making a lending decision.\n•  These use cases include layering generative AI into commercial pricing and profitability and into our priority manager feature.\n•  Given the shape of anticipated demand and adoption for generative AI, our intent is to monetize as a platform fee paired with consumption-based fees and also to drive intelligence across our various solutions.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 2,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "leverages generative AI to automate the creation of a credit memo"
+        ],
+        "critical": [],
+        "applied": [
+          "One of those skills is credit memo narratives, which leverages generative AI to automate the creation of a credit memo, a required and complex deliverable in every commercial loan that is used when making a lending decision.",
+          "These use cases include layering generative AI into commercial pricing and profitability and into our priority manager feature."
+        ],
+        "governance": []
+      },
+      "note": "Applied 2: two or more distinct uses with what the AI does (drafting credit memos; pricing and profitability). Conceptual 1: the AI content is brief.",
+      "selection_reason": "applied 2 with conceptual 1"
+    },
+    {
+      "uid": "S2-0113",
+      "call_title": "MTAR Technologies Limited, Q3 2025 Earnings Call, Feb 11, 2025",
+      "sentences": "•  AI-powered data centers are a huge case for Bloom Energy as per various market sources.\n•  Such AI-powered data centers are predicted to require 1 gigawatt power for their products.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 0,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "Such AI-powered data centers are predicted to require 1 gigawatt power for their products."
+        ],
+        "critical": [],
+        "applied": [],
+        "governance": []
+      },
+      "note": "Conceptual 1: an AI requirement is mentioned, not explained. Applied 0: AI appears only as a market trend for another company, with no use or offering by this company.",
+      "selection_reason": "AI as market backdrop: conceptual 1, applied 0"
+    },
+    {
+      "uid": "S2-0006",
+      "call_title": "Amtech Systems, Inc., Q4 2023 Earnings Call, Dec 13, 2023",
+      "sentences": "•  Within the broader semiconductor market, our tools are used for advanced packaging of processors for high-performance computing and artificial intelligence applications.\n•  We are confident that as markets recover, we will see orders rebound commensurate with our position, with further opportunity to gain share as applications such as advanced packaging for artificial intelligence processors continue to gain greater traction.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "our tools are used for advanced packaging of processors for high-performance computing and artificial intelligence applications"
+        ],
+        "critical": [],
+        "applied": [
+          "our tools are used for advanced packaging of processors for high-performance computing and artificial intelligence applications"
+        ],
+        "governance": []
+      },
+      "note": "Applied 1: the company's own products serve AI hardware, which counts as 1 even though no AI is used. Conceptual 1.",
+      "selection_reason": "supplying AI demand is applied 1, not 0"
+    },
+    {
+      "uid": "S2-0012",
+      "call_title": "MINEBEA MITSUMI Inc., Q3 2026 Earnings Call, Feb 05, 2026",
+      "sentences": "•  So if you look at the photo, as you can see, the AI servers, the MLS-related products for AI servers and the potential for increased sales, you can see that it's quite a high potential.\n•  So AI servers and commercial drones and humanoid robots and new mobility is somewhat new, and it can be defined in a different way.\n•  But for AI servers for next fiscal year, I do not think that you don't have to be concerned about risk.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 1,
+        "applied": 0,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [
+          "the MLS-related products for AI servers"
+        ],
+        "critical": [
+          "But for AI servers for next fiscal year, I do not think that you don't have to be concerned about risk."
+        ],
+        "applied": [],
+        "governance": []
+      },
+      "note": "Critical 1: the speaker explicitly addresses risk connected to AI. Applied 0: no use or offering is described beyond market potential.",
+      "selection_reason": "critical 0/1 boundary: one explicit risk remark is 1"
+    },
+    {
+      "uid": "S2-0038",
+      "call_title": "Grindr Inc., Q2 2023 Earnings Call, Aug 15, 2023",
+      "sentences": "•  We are in early stages of developing our AI products.\n•  We believe that AI will transform the ability to match users with each other and create new use cases for engagement, and we're making investments across a broad range of AI and ML use cases and features that we expect to bring to market in the coming quarters.\n•  And we're also building a lot of things for the future to make have AI features in it, both on the generative side and better matching.\n•  We've also developed a machine learning capability that allows us to detect spam and unsafe activity and proactively remove it.",
+      "scores": {
+        "conceptual": 1,
+        "critical": 0,
+        "applied": 1,
+        "governance": 1
+      },
+      "evidence": {
+        "conceptual": [
+          "We've also developed a machine learning capability that allows us to detect spam and unsafe activity and proactively remove it."
+        ],
+        "critical": [],
+        "applied": [
+          "We've also developed a machine learning capability that allows us to detect spam and unsafe activity and proactively remove it."
+        ],
+        "governance": [
+          "detect spam and unsafe activity and proactively remove it"
+        ]
+      },
+      "note": "Governance 1: an AI capability whose purpose is safety (detecting unsafe activity). Applied 1: one concrete use. Critical 0: no limitation or risk of AI itself is raised.",
+      "selection_reason": "governance 0/1 boundary: AI for safety is 1"
+    },
+    {
+      "uid": "S2-0070",
+      "call_title": "Commvault Systems, Inc., Q1 2026 Earnings Call, Jul 29, 2025",
+      "sentences": "•  In Gartner's critical capabilities reports, we were ranked #1 in 5 out of 6 use cases, including multi-cloud and SaaS, and we received the highest rating for the AI and ML critical capability.\n•  Protecting AI data is part of that.\n•  At the Gartner Security and Risk Management Summit in June, analysts reported by 2028, 25% of enterprise breaches will be traced back to AI agent abuse from both external and malicious internal actors.\n•  To directly address threats posed by AI and to further advance data security, Commvault recently announced its intent to acquire Satori Cyber, a data and AI security company.\n•  This strategic acquisition will add powerful capabilities that strengthen Commvault's data security offerings and empower customers to use AI in a better governed and more responsible way.\n•  The bottom line, we have an industry-leading cyber resilience platform, an aggressive AI-minded innovation road map and the proven execution customers rely on to keep their businesses uninterrupted.\n•  Now when we took on Clumio, Clumio gave us very good large AI data protection capabilities.\n•  And also, as customers start training models, and using AI internally, policy enforcement and observability on LLMs and other things and the data that trains those models naturally fits that.\n•  So it's not about separate policy enforcement on a separate tool set for just AI, and they will be placed for that.",
+      "scores": {
+        "conceptual": 2,
+        "critical": 1,
+        "applied": 2,
+        "governance": 2
+      },
+      "evidence": {
+        "conceptual": [
+          "policy enforcement and observability on LLMs and other things and the data that trains those models",
+          "Clumio gave us very good large AI data protection capabilities"
+        ],
+        "critical": [
+          "by 2028, 25% of enterprise breaches will be traced back to AI agent abuse from both external and malicious internal actors"
+        ],
+        "applied": [
+          "To directly address threats posed by AI and to further advance data security, Commvault recently announced its intent to acquire Satori Cyber, a data and AI security company.",
+          "as customers start training models, and using AI internally, policy enforcement and observability on LLMs and other things and the data that trains those models naturally fits that"
+        ],
+        "governance": [
+          "empower customers to use AI in a better governed and more responsible way",
+          "policy enforcement and observability on LLMs and other things and the data that trains those models"
+        ]
+      },
+      "note": "Governance 2: several connected controls around AI (protecting AI data, policy enforcement and observability on models and training data, responsible use). Critical 1: an AI-enabled threat is raised. Conceptual 2 and applied 2: specific AI security capabilities developed across the excerpt.",
+      "selection_reason": "governance 2 and critical 1 from AI threats"
+    },
+    {
+      "uid": "S3-0023",
+      "call_title": "Quantum Foods Holdings Ltd, H1 2025 Earnings Call, May 23, 2025",
+      "sentences": "•  And we got some question from [ Magleni Meduna. ] What are the measures that were taken into consideration in order for the company not to have AI outbreaks?\n•  We've got a question from Karim [indiscernible] about whether the company has applied for vaccination or specific flocks against AI at the Department of Agriculture or if not yet, is the company planning to apply?",
+      "scores": {
+        "conceptual": 0,
+        "critical": 0,
+        "applied": 0,
+        "governance": 0
+      },
+      "evidence": {
+        "conceptual": [],
+        "critical": [],
+        "applied": [],
+        "governance": []
+      },
+      "note": "All 0: here \"AI\" means avian influenza, not artificial intelligence, and the sentences are analyst questions.",
+      "selection_reason": "0 when AI is not artificial intelligence or only appears in a question"
+    }
+  ]
+}

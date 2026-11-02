@@ -344,7 +344,7 @@ def main(argv: list[str] | None = None) -> int:
         default="single",
         help="single = one prompt scores all four dimensions (original); perdim = one prompt per dimension",
     )
-    parser.add_argument("--prompt-version", choices=["sheet", "v3", "v4"], default="sheet", help="sheet = sheet-aligned prompt (baseline); v3 = fix3 rubric; v4 = v3 with the sheet-aligned applied rule")
+    parser.add_argument("--prompt-version", choices=["sheet", "v3", "v4", "v5"], default="sheet", help="sheet = sheet-aligned prompt (baseline); v3 = fix3 rubric; v4 = v3 with the sheet-aligned applied rule; v5 = fix5 (DEV-split revision of v4)")
     parser.add_argument("--num-samples", type=int, default=1, help="Samples per prompt; >1 enables majority vote")
     parser.add_argument("--sample-temperature", type=float, default=0.7, help="Temperature used when --num-samples > 1")
     parser.add_argument("--top-p", type=float, default=0.95, help="top_p used when --num-samples > 1")

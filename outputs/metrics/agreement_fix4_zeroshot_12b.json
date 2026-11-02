@@ -1,0 +1,69 @@
+{
+  "n": 143,
+  "dimensions": {
+    "conceptual": {
+      "linear_kappa": 0.4953145917001339,
+      "quadratic_kappa": 0.5188536953242835,
+      "kripp_alpha_ordinal": 0.5345202508131763,
+      "exact_k": 114,
+      "exact_n": 143,
+      "exact_pct": 79.72027972027972
+    },
+    "critical": {
+      "linear_kappa": 0.5048879837067209,
+      "quadratic_kappa": 0.5264116575591986,
+      "kripp_alpha_ordinal": 0.5399084080902263,
+      "exact_k": 112,
+      "exact_n": 143,
+      "exact_pct": 78.32167832167832
+    },
+    "applied": {
+      "linear_kappa": 0.5197100936892346,
+      "quadratic_kappa": 0.586642324661494,
+      "kripp_alpha_ordinal": 0.5708287970256405,
+      "exact_k": 105,
+      "exact_n": 143,
+      "exact_pct": 73.42657342657343
+    },
+    "governance": {
+      "linear_kappa": 0.5909276665304455,
+      "quadratic_kappa": 0.674047541517421,
+      "kripp_alpha_ordinal": 0.6129653869177119,
+      "exact_k": 115,
+      "exact_n": 143,
+      "exact_pct": 80.41958041958041
+    }
+  },
+  "overall_average": {
+    "linear_kappa": 0.5730081300813008,
+    "quadratic_kappa": 0.7595598863334677,
+    "kripp_alpha_ordinal": 0.711355329697392,
+    "kripp_alpha_interval": 0.758777031475056,
+    "exact_k": 61,
+    "exact_n": 143,
+    "exact_pct": 42.65734265734266,
+    "icc_a1": 0.7608391608391609,
+    "icc_a1_pingouin_icc2": 0.7608391608391611,
+    "icc_a1_ci95_bootstrap": [
+      0.6685811396185697,
+      0.8310603192772137
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_valid": 2000,
+    "bootstrap_seed": 20261019,
+    "mean_abs_diff_composite": 0.17657342657342656,
+    "human_composite_mean": 0.7937062937062938,
+    "model_composite_mean": 0.7290209790209791
+  },
+  "inputs": {
+    "preds": "outputs/preds_fix4_zeroshot_12b_n143.csv",
+    "codes": "data/coding.csv",
+    "n_codes": 143,
+    "n_codes_invalid": 0,
+    "n_preds": 143,
+    "n_matched_uid": 143,
+    "n_dropped_invalid": 0,
+    "dropped_uids": [],
+    "n_codes_without_pred": 0
+  }
+}
